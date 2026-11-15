@@ -45,3 +45,18 @@ fi
 
 echo "Applying chezmoi dotfiles..."
 chezmoi init --apply git@github.com:Son-of-Ace/dotfiles.git
+
+SCRIPT_PATH="$(realpath "${BASH_SOURCE[0]}" 2>/dev/null || true)"
+if [[ -n "$SCRIPT_PATH" && -f "$SCRIPT_PATH" ]]; then
+    SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+    DIR_NAME="$(basename "$SCRIPT_DIR")"
+
+    if [[ "$DIR_NAME" == "arch-bootstrap" || "$DIR_NAME" == "bootstrap" ]]; then
+        echo "Removing bootstrap repository ($SCRIPT_DIR)..."
+        cd "$HOME"
+        rm -rf "$SCRIPT_DIR"
+    else
+        echo "Removing standalone bootstrap script ($SCRIPT_PATH)..."
+        rm -f "$SCRIPT_PATH"
+    fi
+fi
