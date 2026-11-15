@@ -44,4 +44,4 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 echo "Applying chezmoi dotfiles..."
-chezmoi init --apply git@github.com:YOUR_USERNAME/dotfiles.git
+chezmoi init --apply git@github.com:Son-of-Ace/dotfiles.git
